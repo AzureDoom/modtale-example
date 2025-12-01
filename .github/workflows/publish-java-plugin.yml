@@ -1,0 +1,47 @@
+name: Build & Publish Java Plugin
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    env:
+      # REPLACE THIS WITH YOUR REAL MODTALE JAVA PLUGIN UUID
+      PROJECT_ID: "123e4567-e89b-12d3-a456-426614174000"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Build with Gradle
+        working-directory: ./github-action-plugin
+        run: |
+          chmod +x gradlew
+          ./gradlew build
+
+      - name: Upload to Modtale
+        working-directory: ./github-action-plugin
+        run: |
+          # 1. Get Version from Tag (e.g. v1.0.5 -> 1.0.5)
+          VERSION=${GITHUB_REF#refs/tags/v}
+          
+          # 2. Find the built jar
+          # We use find because the jar name might vary based on build config
+          JAR_PATH=$(find build/libs -name "*-plain.jar" -prune -o -name "*.jar" -print | head -n 1)
+          
+          echo "Found Jar: $JAR_PATH"
+          echo "Publishing Version: $VERSION"
+
+          # 3. Upload
+          curl -X POST "https://modtale.net/api/v1/publish/$PROJECT_ID" \
+            -H "X-Api-Key: ${{ secrets.MODTALE_API_KEY }}" \
+            -F "file=@$JAR_PATH" \
+            -F "versionNumber=$VERSION" \
+            -F "gameVersions=Release 1.0" \
+            -F "changelog=Automated Build & Release from GitHub"
