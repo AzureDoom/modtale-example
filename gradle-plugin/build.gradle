@@ -38,10 +38,10 @@ tasks.register("publishToModtale", Exec) {
                 .get().asFile
 
         if (!apiKey || !projectId) {
-            throw new GradleException("MODTALE_KEY and MODTALE_PROJECT_ID env vars are required.")
+            throw new GradleException("Error: MODTALE_KEY and MODTALE_PROJECT_ID env vars are required.")
         }
         if (!jarFile.exists()) {
-            throw new GradleException("Jar file not found: ${jarFile}")
+            throw new GradleException("Error: Jar file not found: ${jarFile}")
         }
 
         commandLine(
@@ -55,3 +55,4 @@ tasks.register("publishToModtale", Exec) {
         )
     }
 }
+
