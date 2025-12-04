@@ -26,18 +26,26 @@
 
 Before integrating these examples, ensure you have the following ready:
 
-1.  **A Modtale Account**
-    * Sign in at [modtale.net](https://modtale.net).
-2.  **An API Key**
-    * Navigate to **Profile Icon** → **Developer Settings**.
-    * Generate a new key (e.g., `md_abc123...`) and save it securely.
-3.  **A Project ID**
-    * Create a project manually on Modtale.
-    * The ID is the UUID found at the end of your project URL.
+1. **A Modtale Account**
+
+   * Sign in at [modtale.net](https://modtale.net).
+
+3. **An API Key**
+
+   * Navigate to **Profile Icon → Developer Settings**
+
+   * Generate a new key (e.g., `md_abc123...`)
+
+5. **A Project ID**
+
+   * Create a project manually on Modtale
+
+   * The ID is the UUID found at the end of your project URL
 
 ---
 
 ## Recommended: GitHub Actions
+
 We strongly recommend using **GitHub Actions** for continuous delivery. This ensures your project is automatically built and published to Modtale whenever you create a GitHub Release.
 
 <table>
@@ -45,11 +53,11 @@ We strongly recommend using **GitHub Actions** for continuous delivery. This ens
     <tr>
       <th width="50%" align="center">
         <h3>📦 Resource Packs</h3>
-        <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white" alt="GH Actions">
+        <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white">
       </th>
       <th width="50%" align="center">
         <h3>☕ Java Plugins</h3>
-        <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white" alt="GH Actions">
+        <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white">
       </th>
     </tr>
   </thead>
@@ -63,7 +71,7 @@ We strongly recommend using **GitHub Actions** for continuous delivery. This ens
         <ol>
           <li>Go to Repo <b>Settings → Secrets → Actions</b>.</li>
           <li>Add secret: MODTALE_API_KEY.</li>
-          <li>Edit .github/workflows/publish-resource-pack.yml with your PROJECT_ID.</li>
+          <li>Edit <code>.github/workflows/publish-resource-pack.yml</code> with your PROJECT_ID.</li>
           <li>Create a new Release (tag) to trigger.</li>
         </ol>
       </td>
@@ -75,7 +83,7 @@ We strongly recommend using **GitHub Actions** for continuous delivery. This ens
         <ol>
           <li>Go to Repo <b>Settings → Secrets → Actions</b>.</li>
           <li>Add secret: MODTALE_API_KEY.</li>
-          <li>Edit .github/workflows/publish-java-plugin.yml with your PROJECT_ID.</li>
+          <li>Edit <code>.github/workflows/publish-java-plugin.yml</code> with your PROJECT_ID.</li>
           <li>Create a new Release (tag) to trigger.</li>
         </ol>
       </td>
@@ -85,65 +93,93 @@ We strongly recommend using **GitHub Actions** for continuous delivery. This ens
 
 ---
 
-## Local Integration
+# Local Integration
+
 Use these methods if you prefer to publish directly from your local terminal or IDE.
 
-<table>
-  <thead>
-    <tr>
-      <th width="50%" align="center">
-        <h3>🐘 Gradle</h3>
-        <img src="https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white" alt="Gradle">
-      </th>
-      <th width="50%" align="center">
-        <h3>🪶 Maven</h3>
-        <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white" alt="Maven">
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td valign="top">
-        <p><b>Location:</b> /gradle-plugin</p>
-        <p>Adds a custom publishToModtale task to your build script.</p>
-        <br>
-        <b>Setup:</b>
-        <ul>
-          <li>Open gradle-plugin/build.gradle</li>
-          <li>Review the custom task logic.</li>
-        </ul>
-        <br>
-        <b>Usage (Bash):</b>
-        <pre lang="bash">
+---
+
+## 🐘 **Gradle**
+
+### Location: `/gradle-plugin`
+
+Adds a custom `publishToModtale` task to your build script.
+
+**Setup:**
+
+* Open `gradle-plugin/build.gradle`
+* Review the custom task logic
+
+**Usage (Bash):**
+
+```bash
 export MODTALE_KEY="your_key"
 export MODTALE_PROJECT_ID="uuid"
-./gradlew publishToModtale</pre>
-        <b>Usage (PowerShell):</b>
-        <pre lang="powershell">
+./gradlew publishToModtale
+```
+
+**Usage (PowerShell):**
+
+```powershell
 $env:MODTALE_KEY="your_key"
 $env:MODTALE_PROJECT_ID="uuid"
-.\gradlew publishToModtale</pre>
-      </td>
-      <td valign="top">
-        <p><b>Location:</b> /maven-plugin</p>
-        <p>Uses the exec-maven-plugin within a specific build profile.</p>
-        <br>
-        <b>Setup:</b>
-        <ul>
-          <li>Open maven-plugin/pom.xml</li>
-          <li>Review the &lt;profile&gt; configuration.</li>
-        </ul>
-        <br>
-        <b>Usage (Bash/PowerShell):</b>
-        <pre lang="bash">
+.\gradlew publishToModtale
+```
+
+---
+
+## 🪶 **Maven**
+
+### Location: `/maven-plugin`
+
+Uses the `exec-maven-plugin` within a dedicated build profile.
+
+**Setup:**
+
+* Open `maven-plugin/pom.xml`
+* Review the `<profile>` configuration
+
+**Usage (Bash/PowerShell):**
+
+```bash
 export MODTALE_KEY="your_key"
 export MODTALE_PROJECT_ID="uuid"
 
-mvn clean package -Ppublish-modtale</pre>
-</td>
-</tr>
-  </tbody>
-</table>
+mvn clean package -Ppublish-modtale
+```
+
+---
+
+## 🦫 **Go**
+
+### Location: `/go-publisher`
+
+A lightweight Go CLI that performs a multipart POST upload to Modtale.
+This is ideal when you're automating deployments or building cross-platform tools.
+
+**Setup:**
+
+* Review `go-publisher/main.go`
+* Ensure Go 1.21+ is installed
+
+**Usage (Bash):**
+
+```bash
+export MODTALE_KEY="your_key"
+export MODTALE_PROJECT_ID="uuid"
+go run main.go --jar path/to/file.jar
+```
+
+**Usage (PowerShell):**
+
+```powershell
+$env:MODTALE_KEY="your_key"
+$env:MODTALE_PROJECT_ID="uuid"
+go run main.go --jar path\to\file.jar
+```
+
+If no `--jar` is provided, the CLI automatically searches for
+`build/libs/*.jar`, matching the Java example below.
 
 <div align="center">
   <br>
