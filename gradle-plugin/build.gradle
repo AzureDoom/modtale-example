@@ -58,5 +58,5 @@ tasks.register("publishToModtale", Exec) {
                 '-F', "changelog=Uploaded via Local Gradle Task"
         )
     }
-
 }
+
