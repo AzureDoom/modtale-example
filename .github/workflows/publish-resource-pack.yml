@@ -26,5 +26,5 @@ jobs:
             -H "X-MODTALE-KEY: ${{ secrets.MODTALE_API_KEY }}" \
             -F "file=@MyPack.zip" \
             -F "versionNumber=$VERSION" \
-            -F "gameVersions=Release 1.0" \
+            -F "gameVersions=2026.01.17-4b0f30090" \
             -F "changelog=Released from GitHub Actions"

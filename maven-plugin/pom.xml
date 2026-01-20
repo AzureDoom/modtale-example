@@ -60,7 +60,7 @@
                                         <argument>-H</argument><argument>X-MODTALE-KEY: ${env.MODTALE_KEY}</argument>
                                         <argument>-F</argument><argument>file=@${project.build.directory}/${project.artifactId}-${project.version}.jar</argument>
                                         <argument>-F</argument><argument>versionNumber=${project.version}</argument>
-                                        <argument>-F</argument><argument>gameVersions=Release 1.0</argument>
+                                        <argument>-F</argument><argument>gameVersions=2026.01.17-4b0f30090</argument>
                                         <argument>-F</argument><argument>changelog=Uploaded via Maven</argument>
                                     </arguments>
                                 </configuration>
@@ -73,3 +73,4 @@
     </profiles>
 
 </project>
+

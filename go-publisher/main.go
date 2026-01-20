@@ -16,7 +16,7 @@ func main() {
     // CLI flags
     jarPath := flag.String("jar", "", "Path to the JAR file to upload (default tries build/libs/*.jar)")
     version := flag.String("version", "", "versionNumber field to send (default: jar base name)")
-    gameVersions := flag.String("gameVersions", "Release 1.0", "gameVersions form field")
+    gameVersions := flag.String("gameVersions", "2026.01.17-4b0f30090", "gameVersions form field")
     changelog := flag.String("changelog", "Uploaded via Go publisher", "changelog form field")
     endpoint := flag.String("endpoint", "https://api.modtale.net/api/v1/projects", "base API endpoint")
     flag.Parse()
@@ -98,3 +98,4 @@ func main() {
     }
 
 }
+
