@@ -95,7 +95,7 @@ We strongly recommend using **GitHub Actions** for continuous delivery. This ens
 
 # Using Modtale as a dependency repository
 
-### `gradle-maven-dependency/`
+### Location: `gradle-maven-dependency/`
 
 This directory contains a Gradle example that demonstrates resolving Modtale projects directly from the Modtale API using an artifact-only Ivy repository.
 
@@ -202,5 +202,6 @@ If no `--jar` is provided, the CLI automatically searches for
   <br>
   <p><i>Modtale is not affiliated with Hypixel Studios.</i></p>
 </div>
+
 
 
