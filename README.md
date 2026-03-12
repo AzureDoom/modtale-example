@@ -32,15 +32,15 @@ Before integrating these examples, ensure you have the following ready:
 
 3. **An API Key**
 
-   * Navigate to **Profile Icon → Developer Settings**
+   * Navigate to **Profile Icon → Creator Dashboard → Developer Settings**
 
-   * Generate a new key (e.g., `md_abc123...`)
+   * Generate a new key (e.g., `md_abc123...`) and set scopes
 
 5. **A Project ID**
 
    * Create a project manually on Modtale
 
-   * The ID is the UUID found at the end of your project URL
+   * The ID is the UUID found at the end of your default project URL, or in the sidebar under `Project ID`
 
 ---
 
@@ -202,6 +202,7 @@ If no `--jar` is provided, the CLI automatically searches for
   <br>
   <p><i>Modtale is not affiliated with Hypixel Studios.</i></p>
 </div>
+
 
 
 
