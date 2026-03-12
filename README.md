@@ -93,6 +93,25 @@ We strongly recommend using **GitHub Actions** for continuous delivery. This ens
 
 ---
 
+# Using Modtale as a dependency repository
+
+### `gradle-maven-dependency/`
+
+This directory contains a Gradle example that demonstrates resolving Modtale projects directly from the Modtale API using an artifact-only Ivy repository.
+
+Instead of a traditional Maven/Ivy repository that hosts module metadata, the build config points Gradle at Modtale’s download endpoint and uses an artifact pattern like:
+
+`https://api.modtale.net/api/v1/projects/<project>/versions/<version>/download`
+
+Where:
+
+- `<project>` can be either the project slug (e.g. `levelingcore`) or the project ID (project ID is recommended)
+- `<version>` is the Modtale version string (without a leading `v`)
+
+See `gradle-maven-dependency/build.gradle` for the full configuration and usage examples.
+
+---
+
 # Local Integration
 
 Use these methods if you prefer to publish directly from your local terminal or IDE.
@@ -125,8 +144,6 @@ $env:MODTALE_KEY="your_key"
 $env:MODTALE_PROJECT_ID="uuid"
 .\gradlew publishToModtale
 ```
-
----
 
 ## 🪶 **Maven**
 
@@ -185,4 +202,5 @@ If no `--jar` is provided, the CLI automatically searches for
   <br>
   <p><i>Modtale is not affiliated with Hypixel Studios.</i></p>
 </div>
+
 
